@@ -1,4 +1,33 @@
-<article>
+
+<div class="signin text-center" *ngIf="!login">
+    <form class="form-sigin was-validated" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
+        <h3 class="mb-3 font-weight-normal">Login</h3>
+
+        <div class="form-group">
+            
+              <input type="text"class="form-control" aria-describedby="helpId" name="usuarioLogin" [(ngModel)]="usuario" pattern="(?=.*[A-Za-z]).{2,11}" #usuarioLogin="ngModel" placeholder="Usuario" required>
+              
+              <div *ngIf="!usuarioLogin.valid && usuarioLogin.touched" class="invalid-feedback">Error en el campo de usuario</div>
+            
+              <div *ngIf="usuarioLogin.errors?.required && usuarioLogin.touched" class="invalid-feedback">Este campo es obligatorio</div>
+        </div>
+
+        <div class="form-group">
+            
+            <input type="password"class="form-control" aria-describedby="helpId" name="passwordLogin" [(ngModel)]="password" #passwordLogin="ngModel" placeholder="Contraseña" required>
+            
+           <div *ngIf="passwordLogin.errors?.required && passwordLogin.touched" class="invalid-feedback">Este campo es obligatorio</div>
+      </div>
+
+      <div *ngIf="!validarLogin" class="alert alert-danger">Usuario y/o contraseña incorrectos</div>
+
+      <button [disabled]="!f.valid" id="botonIngresar" class="btn btn-lg btn-primary btn-block mt-3">Ingresar</button>
+
+    </form>
+</div>
+
+
+<article *ngIf="login">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-3">Fluid jumbo heading</h1>
@@ -11,15 +40,9 @@
         </div>
 
         <div class="container">
-            <h2>Este es el titulo del articulo</h2>
-            <img src="../../../assets/img/slide/slide01.jpg" class="py-3 img-fluid">
-            <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus nobis facilis doloribus enim iusto ab soluta voluptatibus omnis harum assumenda? Eveniet ex sunt dolor ullam voluptate, iure a consectetur voluptatibus!
-                Molestiae repudiandae tempora natus sint autem explicabo molestias nihil obcaecati soluta amet qui provident, repellendus quod reiciendis doloribus minus quidem culpa, nostrum exercitationem! Enim perferendis quas laudantium sapiente rem voluptate.
-                Quam aspernatur modi eius autem, maxime molestiae suscipit excepturi ullam, et illo voluptatem dolore unde cum asperiores omnis maiores minus libero reprehenderit. Commodi quas suscipit ipsa ex nulla culpa doloribus?
-                Quidem enim, vero exercitationem distinctio dignissimos numquam nostrum cumque ab nihil, consectetur laboriosam atque perferendis saepe, deleniti eos minima asperiores. Nostrum eaque, ut asperiores magnam commodi reprehenderit accusamus esse qui.
-                Corporis voluptates commodi ipsa dignissimos perferendis qui corrupti cum odit. Vero nesciunt deserunt nisi quasi ipsa, officia rem cumque? Rem iusto, numquam nesciunt nihil aperiam maiores iste deserunt recusandae esse.
-            </div>
+            
+            <div [innerHTML]="contenidoArticulo"></div>  <!--Toma todo el contenido declarado en articulos.json -->
+            <!--Pero pasamos el valor de ese contenido a una variable publica-->
         </div>
 
     </div>

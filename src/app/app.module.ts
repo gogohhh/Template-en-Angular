@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { FormsModule } from '@angular/forms';
+
 import { HeaderComponent } from './pages/inicio/header/header.component';
 import { SlideshowComponent } from './pages/inicio/slideshow/slideshow.component';
 import { GaleriaComponent } from './pages/inicio/galeria/galeria.component';
@@ -14,6 +16,7 @@ import { ArticulosComponent } from './pages/inicio/articulos/articulos.component
 import { FormularioComponent } from './pages/inicio/formulario/formulario.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ArticuloComponent } from './pages/articulo/articulo.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { ArticuloComponent } from './pages/articulo/articulo.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

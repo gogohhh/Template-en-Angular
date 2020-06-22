@@ -8,11 +8,14 @@ import { ArticulosService } from '../../../services/articulos.service';
 })
 export class ArticulosComponent implements OnInit {
 
+  public articulosJson:any;
+
   constructor(private articulosService: ArticulosService) {
     //RECIVIENDO DATOS DINAMICOS
     this.articulosService.getArticulos()
     .subscribe( respuesta => {
-      console.log("Respuesta articulos: ", respuesta);
+      
+      this.articulosJson = respuesta;
     })
    }
 

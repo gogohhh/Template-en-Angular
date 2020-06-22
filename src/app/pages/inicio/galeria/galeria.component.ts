@@ -10,17 +10,30 @@ declare var $:any;
 })
 export class GaleriaComponent implements OnInit {
 
+  //VARIABLES PUBLICAS
+
+  public galeriaJson:any;
+  public renderGaleria:boolean = true;
+
   constructor(private galeriaService: GaleriaService) {
     //RECIVIENDO DATOS DINAMICOS
     this.galeriaService.getGaleria()
     .subscribe( respuesta => {
       console.log("Respuesta: ", respuesta);
+      this.galeriaJson = respuesta;
     })
    }
 
   ngOnInit(): void {
 
-    /*=============================================
+    
+  }
+
+  callback(){
+    if(this.renderGaleria){
+      this.renderGaleria = false;
+
+      /*=============================================
       PINTEREST GRID
       =============================================*/
       
@@ -42,6 +55,7 @@ export class GaleriaComponent implements OnInit {
         $(this).ekkoLightbox(); //Activar la acción del plugin Ekko Lightbox
       
       })
+    }
   }
 
 }
